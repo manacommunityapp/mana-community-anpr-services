@@ -1,0 +1,38 @@
+﻿# ── Core ML / Vision ────────────────────────────────────────────────────────
+ultralytics>=8.4.0            # YOLOv8 + YOLOv11 plate detection
+easyocr>=1.7.2                # Primary OCR engine (EasyOCR, CRNN/LSTM)
+paddleocr>=3.0.0              # Production OCR engine (PP-OCRv4, best accuracy)
+# rapidocr-onnxruntime>=1.3.0 # Lightweight ONNX alternative — uncomment if no PaddlePaddle
+opencv-python-headless>=5.0.0 # OpenCV (headless — no GUI, smaller docker image)
+Pillow>=10.4.0
+numpy>=1.26.4
+
+# PyTorch (CPU default; for GPU install via https://pytorch.org/get-started)
+# torch>=2.1.0 --index-url https://download.pytorch.org/whl/cpu
+# torchvision>=0.16.0
+
+# ── API Framework ────────────────────────────────────────────────────────────
+fastapi[standard]>=0.115.0    # FastAPI + uvicorn + pydantic bundled
+uvicorn[standard]>=0.30.0     # ASGI server with WebSocket support
+python-multipart>=0.0.9       # Multipart form / file uploads
+httpx>=0.27.0                 # Async HTTP client (outbound webhook calls)
+aiofiles>=23.2.0              # Async file I/O
+
+# ── Configuration ────────────────────────────────────────────────────────────
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+python-dotenv>=1.0.1
+
+# ── Database (local event audit log) ─────────────────────────────────────────
+sqlalchemy>=2.0.35
+alembic>=1.13.3
+aiosqlite>=0.20.0             # Async SQLite driver
+asyncpg>=0.29.0               # Async PostgreSQL driver
+
+# ── Logging ──────────────────────────────────────────────────────────────────
+structlog>=24.4.0
+
+# ── Testing ──────────────────────────────────────────────────────────────────
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+pytest-cov>=5.0.0

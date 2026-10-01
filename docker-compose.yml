@@ -1,0 +1,36 @@
+﻿version: '3.9'
+
+services:
+  anpr-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: mana-anpr-service
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    volumes:
+      - ./models:/app/models:ro    # Mount model weights
+      - ./anpr_events.db:/app/anpr_events.db  # Persist event log
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: Uncomment to use PostgreSQL instead of SQLite
+  # postgres:
+  #   image: postgres:16-alpine
+  #   environment:
+  #     POSTGRES_DB: anpr_events
+  #     POSTGRES_USER: anpr
+  #     POSTGRES_PASSWORD: anpr_secret
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - pg_data:/var/lib/postgresql/data
+
+# volumes:
+#   pg_data:
